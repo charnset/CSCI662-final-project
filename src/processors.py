@@ -505,6 +505,12 @@ class TextClassificationProcessor(DataProcessor):
             return list(range(2))
         elif self.task_name == "mpqa":
             return list(range(2))
+
+        elif self.task_name == "products": # [ADD]
+            return list(range(2)) # [ADD]
+        elif self.task_name == "4dim": # [ADD]
+            return list(range(4)) # [ADD]
+
         else:
             raise Exception("task_name not supported.")
         
@@ -526,6 +532,12 @@ class TextClassificationProcessor(DataProcessor):
                 examples.append(InputExample(guid=guid, text_a=text, short_text=line[1], label=line[0])) 
             elif self.task_name in ['mr', 'sst-5', 'subj', 'trec', 'cr', 'mpqa']:
                 examples.append(InputExample(guid=guid, text_a=line[1], label=line[0]))
+
+            elif self.task_name == 'products': #[ADD]
+                examples.append(InputExample(guid=guid, text_a=line[1], label=line[0])) #[ADD]
+            elif self.task_name == '4dim': #[ADD]
+                examples.append(InputExample(guid=guid, text_a=line[1], label=line[0])) #[ADD]
+
             else:
                 raise Exception("Task_name not supported.")
 
@@ -553,7 +565,10 @@ processors_mapping = {
     "subj": TextClassificationProcessor("subj"),
     "trec": TextClassificationProcessor("trec"),
     "cr": TextClassificationProcessor("cr"),
-    "mpqa": TextClassificationProcessor("mpqa")
+    "mpqa": TextClassificationProcessor("mpqa"),
+    
+    "products": TextClassificationProcessor("products"), #[ADD]
+    "4dim": TextClassificationProcessor("4dim") #[ADD]
 }
 
 num_labels_mapping = {
@@ -572,7 +587,10 @@ num_labels_mapping = {
     "subj": 2,
     "trec": 6,
     "cr": 2,
-    "mpqa": 2
+    "mpqa": 2,
+
+    "products": 2, #[ADD]
+    "4dim": 4 #[ADD]
 }
 
 output_modes_mapping = {
@@ -592,7 +610,10 @@ output_modes_mapping = {
     "subj": "classification",
     "trec": "classification",
     "cr": "classification",
-    "mpqa": "classification"
+    "mpqa": "classification",
+
+    "products": "classification", #[ADD]
+    "4dim": "classification" #[ADD]
 }
 
 # Return a function that takes (task_name, preds, labels) as inputs
@@ -614,6 +635,9 @@ compute_metrics_mapping = {
     "trec": text_classification_metrics,
     "cr": text_classification_metrics,
     "mpqa": text_classification_metrics,
+
+    "products": text_classification_metrics, #[ADD]
+    "4dim": text_classification_metrics #[ADD]
 }
 
 # For regression task only: median

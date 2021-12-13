@@ -107,7 +107,12 @@ for TASK in $TASKS; do
                 MAPPING="{0:'terrible',1:'great'}"
                 TASK_EXTRA="--first_sent_limit 110"
                 ;;
-        esac
+	    4dim)
+		TEMPLATE=*cls**sent_0*_This_is*mask*.*sep+*
+		MAPPING="{0:'exaggerated',1:'honest',2:'fake',3:'generous'}"
+		TASK_EXTRA="--first_sent_limit 110 --other_sent_limit 50"
+		;;
+		esac
 
         if [[ $LOAD_TEMPLATES = "true" ]]; then
             FILENAME=$TEMPLATE_DIR/${TASK}/$K-${SEED}.sort.txt

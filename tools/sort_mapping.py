@@ -123,6 +123,12 @@ def main():
             args.key = 'mpqa_dev_eval_acc'
             args.test_key = 'mpqa_test_eval_acc'
             print_name = condition['task_name']
+	# === ADD === #
+        elif condition['task_name'] == '4dim':
+            args.key = '4dim_dev_eval_acc'
+            args.test_key = '4dim_test_eval_acc'
+            print_name = condition['task_name']
+	# =========== #
         else:
             raise NotImplementedError
 

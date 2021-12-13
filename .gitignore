@@ -138,6 +138,7 @@ dmypy.json
 cython_debug/
 
 *.sh
+!extra_experiment.sh
 .venv
 .vscode
 data

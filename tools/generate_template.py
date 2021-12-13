@@ -283,7 +283,9 @@ def search_template(model, tokenizer, task_name, k, seed, beam, output_dir, data
         'MNLI': {'contradiction':'No','entailment':'Yes','neutral':'Maybe'},
         'SNLI': {'contradiction':'No','entailment':'Yes','neutral':'Maybe'},
         'QNLI': {'not_entailment':'No','entailment':'Yes'},
-        'RTE': {'not_entailment':'No','entailment':'Yes'}
+        'RTE': {'not_entailment':'No','entailment':'Yes'},
+	
+	'4dim': {0:'exaggerated',1:'honest',2:'fake',3:'generous'} #[ADD]	
     }
 
     mapping = map_of_mapping[task_name]
@@ -294,7 +296,7 @@ def search_template(model, tokenizer, task_name, k, seed, beam, output_dir, data
     os.makedirs(os.path.join(output_dir, task_name), exist_ok=True)
     f = open(os.path.join(output_dir, task_name, "{}-{}.txt".format(k, seed)), 'w')
 
-    if task_name in ['SST-2', 'sst-5', 'mr', 'cr', 'subj', 'trec', 'CoLA', 'mpqa']:
+    if task_name in ['SST-2', 'sst-5', 'mr', 'cr', 'subj', 'trec', 'CoLA', 'mpqa', '4dim']:
         # Single sentence tasks
         # We take two kinds of templates: put [MASK] at the beginning or the end
         template = "*cls**sentu_0**<extra_id_0>**label**<extra_id_1>**sep+*"

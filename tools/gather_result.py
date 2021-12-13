@@ -98,6 +98,16 @@ def main():
         elif condition['task_name'] == 'mpqa':
             args.key = 'mpqa_dev_eval_acc'
             args.test_key = 'mpqa_test_eval_acc'
+
+	# === ADD === #
+        elif condition['task_name'] == 'products':
+            args.key = 'products_dev_eval_acc'
+            args.test_key = 'products_test_eval_acc'
+        elif condition['task_name'] == '4dim':
+            args.key = '4dim_dev_eval_acc'
+            args.test_key = '4dim_test_eval_acc'
+	# =========== #
+
         else:
             raise NotImplementedError
 
